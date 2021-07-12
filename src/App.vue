@@ -1,16 +1,19 @@
 <template>
-  <hello></hello>
+  <div id="App">
+    <maintabBar></maintabBar>
+  </div>
 </template>
 
 <script>
-import hello from "@/components/hello";
+import maintabBar from "@/components/content/maintabBar/maintabBar";
 export default {
   name: 'App',
   components: {
-    hello
+    maintabBar
   }
 };
 </script>
 
 <style>
+@import "assets/css/base.css";
 </style>

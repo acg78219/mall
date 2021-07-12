@@ -1,0 +1,52 @@
+@import "./normalize.css";  /*  引入初始化 css 的文件   */
+/*  这里再定义我们项目的基本 css 样式 */
+:root { /*  :root选择根元素 html */
+    /*  定义变量    */
+    --color-text: #666;     /*  文字颜色    */
+    --color-high-text: #ff5777;     /*  文字高亮的颜色 */
+    --color-tine: #ff8198;      /*  背景颜色    */
+    --color-background: #fff;   /*  背景颜色2   */
+    --font-size: 14px;
+    --line-height: 1.5;
+}
+
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    user-select: none;  /*  禁止用户在页面上选择文字、图片等    */
+    background: var(--color-background);
+    color: var(--color-text);
+    width: 100vw;   /*  100vw 代表试图窗口的 100%  */
+}
+
+a {
+    color: var(--color-text);
+    text-decoration: none;
+}
+
+.clear-fix::after {
+    clear: both;
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    visibility: hidden;     /*  设置该元素不可见    */
+}
+
+.clear-fix {
+    zoom: 1;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
