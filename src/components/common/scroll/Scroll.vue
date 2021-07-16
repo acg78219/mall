@@ -31,9 +31,11 @@ export default {
       probeType: this.probeType,   // 父组件调用时候自己决定，因为默认3的话会影响性能
       pullUpLoad: this.pullUpLoad
     })
-    this.scroll.on('pullingUp', () => {
+    if (this.pullUpLoad) {
+      this.scroll.on('pullingUp', () => {
       this.$emit("loadMore")
     })
+    }
     this.scroll.on('scroll', (position) => {
       this.$emit('scrollPos', position) //将 position 发射给调用的组件
     })
@@ -41,10 +43,16 @@ export default {
   methods: {
     // 将插件的方法封装到自己的方法里，这样父组件调用时结构更加清晰
     scrollTo(x, y, time=500) {
-      this.scroll.scrollTo(x, y, time)
+      this.scroll && this.scroll.scrollTo(x, y, time)
     },
     finishPullUp() {
-      this.scroll.finishPullUp()  // 上拉事件完成，以便执行下一次下拉操作
+      this.scroll && this.scroll.finishPullUp()  // 上拉事件完成，以便执行下一次下拉操作
+    },
+    refresh() {
+      this.scroll && this.scroll.refresh()
+    },
+    scrollY() {
+      return this.scroll.y  // 返回页面 y 的坐标
     }
   }
 }

@@ -1,6 +1,10 @@
 <template>
  <div>
-    <router-view></router-view>
+  <router-view v-slot="{ Component }">
+    <keep-alive exclude="Detail">
+      <component :is="Component" />
+    </keep-alive>
+  </router-view>
 <!--  一个tabBar，多个tabBarItem -->
     <tab-bar>
         <tab-bar-item path="/home" active-color="red">

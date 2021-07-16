@@ -1,6 +1,6 @@
 <template>
-  <div class="goods-item">  <!--  商品卡片  -->
-    <img :src="goodsItem.show.img" alt="" @load="imgLoad">
+  <div class="goods-item" @click="itemClick">  <!--  商品卡片  -->
+    <img :src="goodsShow" alt="" @load="imgLoad">
     <div class="goods-info">  <!--  商品卡片中的信息  -->
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import bus from "@/utils";
+import bus from "@/utils/bus";
 export default {
   name: "GoodListItem",
   props: {
@@ -25,7 +25,22 @@ export default {
     imgLoad() {
       // 当图片加载完成后，发射事件"imgLoad"到事件总线去
       // Vue3中bus就是事件总线，需要安装和引用
-      bus.emit('imgLoad',)
+      if (this.$route.path.indexOf('/home') !== -1) {
+        bus.emit('homeImgLoad')
+      }
+      else if (this.$route.path.indexOf('/detail') !== -1) {
+        bus.emit('detailImgLoad')
+      }
+    },
+    itemClick() {
+      // 跳转路由用push，到时侯可以返回
+      this.$router.push('/detail/' + this.goodsItem.iid)  //动态路由的后面变量填item的iid
+    }
+  },
+  computed: {
+    // 因为这个在多个组件中使用，所以有些属性有区别的话可以用 computed 来判断调用
+    goodsShow() {
+      return this.goodsItem.image || this.goodsItem.show.img
     }
   }
 }

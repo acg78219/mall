@@ -1,0 +1,5 @@
+export const ADD_Count = 'add_count'
+export const ADD_TO_BAG = 'add_to_bag'
+export const CHANGE_CHECKED = 'change_checked'
+export const SELECT_ALL = 'select_all'
+export const NOT_SELECT_ALL = 'not_select_all'

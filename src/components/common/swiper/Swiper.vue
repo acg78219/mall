@@ -107,7 +107,8 @@ export default {
     handleDom() {
     //  1.获取要操作的元素
       let swiperEl = document.querySelector('.swiper'); // 获取轮播图组件元素
-      let slidesEls = swiperEl.getElementsByClassName('slide'); // 一个图片就是一个 slide 的 div，所以这里返回列表
+      if (swiperEl) { // 跳转到其他页面下面代码会报错，所以先判断以下
+        let slidesEls = swiperEl.getElementsByClassName('slide'); // 一个图片就是一个 slide 的 div，所以这里返回列表
 
     //  2.保存个数
       this.slideCount = slidesEls.length; // 获取图片的个数
@@ -123,6 +124,7 @@ export default {
       }
     //  4.让 swiper 元素显示第一个（目前是显示前面添加的最后一个元素）
       this.setTransform(-this.totalWidth);
+      }
     },
 
   //  拖动事件的处理
